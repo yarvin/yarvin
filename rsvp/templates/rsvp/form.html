@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alvin & Sharye's Wedding RSVP</title>
+    </head>
+    <body>
+        <p>If you are planning to attend the wedding please fill out the form below.</p>
+        <form action="/rsvp/thanks/" method="post">
+        {% csrf_token %}
+            Name: <input type="text" name="name" /><br />
+            Number of People in your party: <input type="text" name="attendance" maxlength=2 /><br /><br />
+            Where would you like us to send the wedding invitation?<br />
+            Street Address: <input type="text" name="address" /><br />
+            City: <input type="text" name="city" /><br />
+            State: <input type="text" name="state" maxlength=2 /><br />
+            Zipcode: <input type="text" name="zipcode" maxlength=5 /><br />
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+</html>
