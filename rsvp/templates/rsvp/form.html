@@ -4,17 +4,116 @@
         <title>Alvin & Sharye's Wedding RSVP</title>
     </head>
     <body>
-        <p>If you are planning to attend the wedding please fill out the form below.</p>
-        <form action="/rsvp/thanks/" method="post">
-        {% csrf_token %}
-            Name: <input type="text" name="name" /><br />
-            Number of People in your party: <input type="text" name="attendance" maxlength=2 /><br /><br />
-            Where would you like us to send the wedding invitation?<br />
-            Street Address: <input type="text" name="address" /><br />
-            City: <input type="text" name="city" /><br />
-            State: <input type="text" name="state" maxlength=2 /><br />
-            Zipcode: <input type="text" name="zipcode" maxlength=5 /><br />
-            <input type="submit" value="Submit" />
-        </form>
+        <div id="form" align="center">
+            <p>If you are planning to attend the wedding please fill out the form below.</p>
+            <form action="/rsvp/thanks/" method="post">
+            {% csrf_token %}
+                <table border=0>
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" name="name" /></td>
+                    </tr>
+                    <tr>
+                        <td>Number of People in your party:</td>
+                        <td><input type="text" name="attendance" maxlength=2 /></td>
+                    </tr>
+                    <tr>
+                        <td><p>Where would you like us to send<br />
+                            the wedding invitation?</p></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Street Address:</td>
+                        <td><input type="text" name="address" /></td>
+                    </tr>
+                    <tr>
+                        <td>City:</td>
+                        <td><input type="text" name="city" /></td>
+                    </tr>
+                    <tr>
+                        <td>State:</td>
+                        <td><input type="text" name="state" maxlength=2 /></td>
+                    </tr>
+                    <tr>
+                        <td>Zip Code:</td>
+                        <td><input type="text" name="zipcode" maxlength=5 /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Submit" /></td>
+                    </tr>
+                </table>
+            </form>
+            <p>Time until the wedding:</p>
+            <script type="text/javascript">
+            //######################################################################################
+            // Author: ricocheting.com
+            // Version: v2.0
+            // Date: 2011-03-31
+            // Description: displays the amount of time until the "dateFuture" entered below.
+
+            // NOTE: the month entered must be one less than current month. ie; 0=January, 11=December
+            // NOTE: the hour is in 24 hour format. 0=12am, 15=3pm etc
+            // format: dateFuture1 = new Date(year,month-1,day,hour,min,sec)
+            // example: dateFuture1 = new Date(2003,03,26,14,15,00) = April 26, 2003 - 2:15:00 pm
+
+            dateFuture1 = new Date(2014,6,12,14,00,00);
+
+            // TESTING: comment out the line below to print out the "dateFuture" for testing purposes
+            //document.write(dateFuture +"<br />");
+
+
+            //###################################
+            //nothing beyond this point
+            function GetCount(ddate,iid)
+            {
+
+                dateNow = new Date();   //grab current date
+                amount = ddate.getTime() - dateNow.getTime();   //calc milliseconds between dates
+                delete dateNow;
+
+                // if time is already past
+                if(amount < 0)
+                {
+                    document.getElementById(iid).innerHTML="Now!";
+                }
+                // else date is still good
+                else
+                {
+                    days=0;hours=0;mins=0;secs=0;out="";
+
+                    amount = Math.floor(amount/1000);//kill the "milliseconds" so just secs
+
+                    days=Math.floor(amount/86400);//days
+                    amount=amount%86400;
+
+                    hours=Math.floor(amount/3600);//hours
+                    amount=amount%3600;
+
+                    mins=Math.floor(amount/60);//minutes
+                    amount=amount%60;
+
+                    secs=Math.floor(amount);//seconds
+
+                    if(days != 0){out += days +" "+((days==1)?"day":"days")+", ";}
+                    if(hours != 0){out += hours +" "+((hours==1)?"hour":"hours")+", ";}
+                    out += mins +" "+((mins==1)?"min":"mins")+", ";
+                    out += secs +" "+((secs==1)?"sec":"secs")+", ";
+                    out = out.substr(0,out.length-2);
+                    document.getElementById(iid).innerHTML=out;
+
+                    setTimeout(function(){GetCount(ddate,iid)}, 1000);
+                }
+            }
+
+            window.onload=function()
+            {
+                GetCount(dateFuture1, 'countbox1');
+                //you can add additional countdowns here (just make sure you create dateFuture2 and countbox2 etc for each)
+            };
+            </script>
+            <div id="countbox1"></div>
+
+        </div>
     </body>
 </html>
