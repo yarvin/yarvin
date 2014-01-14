@@ -2,9 +2,12 @@
 <html>
     <head>
         <title>Alvin & Sharye's Wedding RSVP</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'rsvp/style.css' %}" />
     </head>
     <body>
         <div id="form" align="center">
+            <p><h1>Alvin & Sharye</h1></p>
             <p>If you are planning to attend the wedding please fill out the form below.</p>
             <form action="/rsvp/thanks/" method="post">
             {% csrf_token %}
@@ -44,7 +47,7 @@
                     </tr>
                 </table>
             </form>
-            <p>Time until the wedding:</p>
+            <p><h3>Time until the wedding:</h3></p>
             <script type="text/javascript">
             //######################################################################################
             // Author: ricocheting.com
